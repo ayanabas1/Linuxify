@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-...">
+    <link rel="stylesheet" href="/styles/main.css">
+    <!-- <link rel="stylesheet" href="/public/main.css"> -->
+    <link rel="stylesheet" href="/styles/responsive.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <title>Admin Dashboard</title>
+    <style>
+        /* Your existing CSS styles */
+        .option3 {
+            border-left: 5px solid #E1A730;
+            background-color: #E1A730;
+            color: white;
+            cursor: pointer;
+        }
+
+     /* Additional CSS for About Us page */
+
+.about-us-container {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 100px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-us-container h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.about-us-container p {
+    color: #555;
+    line-height: 1.6;
+}
+
+.about-us-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.about-us-container li {
+    margin-bottom: 10px;
+}
+
+.about-us-container li::before {
+    content: "\2022";
+    color: #E1A730;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+    
+    </style>
+</head>
+
+<body>
+
+    <!-- for header part -->
+    <header> 
+  
+        <div class="logosec"> 
+            <h1>Linixify</h1>
+            <!-- <img class="img-logo" src="images/LOGO3-removebg-preview.png" alt="logo"> -->
+            <i class="fa fa-bars icn menuicn"  id="menuicn" style="font: 36px;"></i>
+        </div>
+  
+        <div class="message"> 
+            <div class="circle" onclick="navigateTo('Profile.html')"></div> 
+            <i class='fas fa-bell' style='font-size:36px; color: #07333e;'></i>
+            <div class="dp" onclick="navigateTo('profile.html')">          
+                <i class='fas fa-user-circle' style='font-size:36px; color: #07333e;'></i>
+            </div> 
+        </div> 
+    </header>
+
+
+    <div class="content-wrapper">
+        <div class="main-container">
+            <div class="navcontainer">
+                <nav class="nav">
+                    <div class="nav-upper-options">
+                        <div class="nav-option option1" onclick="navigateTo('Dashboard.html')">
+                            <i class='fas fa-clone' style='font-size:24px'></i>
+                            <h3>Dashboard</h3>  
+                        </div>
+                        <div class="nav-option option2" onclick="navigateTo('profile.html')">
+                            <i class='far fa-address-book' style='font-size:24px'></i>
+                            <h3> Profile</h3>
+                        </div>
+
+                        <div class="nav-option option3" onclick="navigateTo('AboutUs.html')">
+                            <i class='fas fa-cog' style='font-size:24px'></i>
+                            <h3>About Us</h3>
+                        </div>
+
+                        <div class="nav-option option4" onclick="navigateTo('Logout.html')">
+                            <i class='fas fa-power-off' style='font-size:24px'></i>
+                            <h3>Logout</h3>
+                        </div>
+
+                    </div>
+                </nav>
+            </div>
+
+
+            
+            <!-- About Us Content -->
+            <div class="about-us-container">
+                <h2>Welcome to Linuxify</h2>
+                <p>
+                    Linuxify is your all-in-one solution for Linux user management. Our platform is designed to
+                    simplify the complexities of managing users on Linux systems. With a focus on usability and
+                    efficiency, Linuxify provides tools that empower administrators and enhance the overall user
+                    administration experience.
+                </p>
+                <p>
+                    At Linuxify, we understand the importance of seamless user management. Whether you're a seasoned
+                    system administrator or just getting started with Linux, our platform is here to make user
+                    administration tasks straightforward and hassle-free.
+                </p>
+                <p>
+                    Key Features:
+                </p>
+                <ul>
+                    <li>User Creation: Easily create new user accounts with specified details.</li>
+                    <li>User Modification: Update user information and passwords effortlessly.</li>
+                    <li>User Deletion: Remove users securely from the system, including their home directories.</li>
+                    <li>View All Users: Get an overview of all users on your Linux system.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+ 
+    <script src="/script/main.js"></script>
+   
+
+</body>
+
+</html>

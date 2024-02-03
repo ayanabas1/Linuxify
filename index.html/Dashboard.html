@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-...">
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/responsive.css">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <title>Admin Dashboard</title>
+    <style>
+        /* Your existing CSS styles */
+        .option1 {
+            border-left: 5px solid #E1A730;
+            background-color: #E1A730;
+            color: white;
+            cursor: pointer;
+        }
+
+        .form-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            display: none;
+
+        }
+
+        .user-form,
+        .group-form,
+        .edit-form {
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .user-form label,
+        .group-form label,
+        .edit-form label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        .user-form input,
+        .group-form input,
+        .edit-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            border-radius: 10px;
+        }
+
+        .user-form button,
+        .group-form button,
+        .edit-form button {
+            width: 100%;
+            background-color: #07333e;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #userListTable,
+        #groupListTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        #userListTable th,
+        #userListTable td,
+        #groupListTable th,
+        #groupListTable td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #userListTable th,
+        #groupListTable th {
+            background-color: #07333e;
+            color: white;
+            justify-content: space-between;
+        }
+
+        .edit-btn,
+        .delete-btn {
+            background-color: #E1A730;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            display: inline;
+            justify-content: space-between;
+        }
+
+        .delete-btn {
+            background-color: #e74c3c;
+            margin-left: 50px;
+            margin-top: 0;
+        }
+
+
+        .edit-form-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+        }
+
+        #deleteUserbutton, #cancelDeleteButton {
+            display: block;
+            justify-content: space-between;
+        }
+
+        #deleteUserButton {
+            margin-bottom: 20px;
+        }
+
+
+        /* New styles for the Modify User form */
+.edit-form-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: none;
+}
+
+.edit-form label {
+    display: block;
+    margin: 10px 0;
+}
+
+.edit-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.edit-form button {
+    width: 100%;
+    background-color: #07333e;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}   
+
+/* Add this to your existing styles or create a new CSS file */
+#userListTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+#userListTable th,
+#userListTable td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: left;
+}
+
+#userListTable th {
+  background-color: #07333e;
+  color: white;
+}
+
+#userListTable tbody tr:hover {
+  background-color: #f5f5f5;
+}
+
+.view {
+  background-color: #07333e;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.view:hover {
+  background-color: #E1A730;
+}
+.edit-btn,
+        .delete-btn {
+            background-color: #E1A730;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-right: 5px;
+        }
+
+        .delete-btn {
+            background-color: #e74c3c;
+        }
+
+        #userListTable tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .view {
+            background-color: #07333e;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .view:hover {
+            background-color: #E1A730;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- for header part -->
+    <header>
+
+        <div class="logosec">
+            <h1>Linixfy</h1>
+            <i class="fa fa-bars icn menuicn" id="menuicn" style="font: 36px;"></i>
+        </div>
+
+        <div class="message">
+            <div class="circle" onclick="navigateTo('Profile.html')"></div>
+            <i class='fas fa-bell' style='font-size:36px; color: #07333e;'></i>
+            <div class="dp" onclick="navigateTo('profile.html')">
+                <i class='fas fa-user-circle' style='font-size:36px; color: #07333e;'></i>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="content-wrapper">
+        <div class="main-container">
+            <div class="navcontainer">
+                <nav class="nav">
+                    <div class="nav-upper-options">
+                        <div class="nav-option option1" onclick="navigateTo('Dashboard.html')">
+                            <i class='fas fa-clone' style='font-size:24px'></i>
+                            <h3>Dashboard</h3>
+                        </div>
+                        <div class="nav-option option2" onclick="navigateTo('profile.html')">
+                            <i class='far fa-address-book' style='font-size:24px'></i>
+                            <h3> Profile</h3>
+                        </div>
+
+                        <div class="nav-option option3" onclick="navigateTo('AboutUs.html')">
+                            <i class='fas fa-cog' style='font-size:24px'></i>
+                            <h3>About Us</h3>
+                        </div>
+
+                        <div class="nav-option option4" onclick="navigateTo('Logout.html')">
+                            <i class='fas fa-power-off' style='font-size:24px'></i>
+                            <h3>Logout</h3>
+                        </div>
+
+                    </div>
+                </nav>
+            </div>
+
+
+            <div class="main">
+                <div class="box-container">
+                    <div class="box box1">
+                        <div class="text">
+                            <h2 class="topic-heading">60.5k</h2>
+                            <h2 class="topic">Add User</h2>
+                        </div>
+                        <button class="btn" id="addUserButton" onclick="showAddUserForm()"
+                            style="background-color: #07333e;">
+                            <i class='fas fa-address-card' style='font-size:48px; color: #E1A730;'></i>
+                        </button>
+                    </div>
+
+                    <div class="box box3">
+                        <div class="text">
+                            <h2 class="topic-heading">3.5k</h2>
+                            <h2 class="topic">Modify User</h2>
+                        </div>
+                        <button class="btn" id="modifyUserButton" onclick="showModifyUserForm()" style="background-color: #07333e;">
+                            <i class='fas fa-users' style='font-size:48px; color: #E1A730;'></i>
+                        </button>
+                    </div>
+                    
+
+                    <div class="box box2">
+                        <div class="text">
+                            <h2 class="topic-heading">5k</h2>
+                            <h2 class="topic">Delete User</h2>
+                        </div>
+                        <button class="btn" id="addGroupButton1" onclick="showDeleteUserForm()"
+                            style="background-color: #07333e;">
+                            <i class="fa fa-trash" style='font-size: 48px; color: #E1A730;'></i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <!-- User Add Form Container -->
+                <div class="form-container" id="userFormContainer">
+                    <form class="user-form" id="userForm">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+
+                        <label for="fullname">Full Name:</label>
+                        <input type="text" id="fullname" name="fullname" required>
+
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+
+                        <label for="confirmPassword">Confirm Password:</label>
+                        <input type="password" id="confirmPassword" name="confirmPassword" required>
+
+                        <!-- Updated button with onclick attribute -->
+                        <button type="button" id="submitUser" onclick="addUser()">Submit</button>
+                    </form>
+                </div>
+
+               
+                <!-- User Modify Form Container -->
+<div class="edit-form-container" id="editFormContainerUser">
+    <form class="edit-form" id="editFormUser">
+        <label for="editUsername">Username:</label>
+        <input type="text" id="editUsername" name="editUsername" required>
+
+        <label for="editFullname">Full Name:</label>
+        <input type="text" id="editFullname" name="editFullname" required>
+
+        <label for="editPassword">Password:</label>
+        <input type="password" id="editPassword" name="editPassword" required>
+
+        <label for="editConfirmPassword">Confirm Password:</label>
+        <input type="password" id="editConfirmPassword" name="editConfirmPassword" required>
+
+        <!-- Updated button with onclick attribute -->
+        <button type="button" id="confirmEditUser" onclick="confirmEditUser()">Confirm Edit</button>
+        <button type="button" id="cancelEditButton" onclick="resetEditUserForm()">Cancel</button>
+    </form>
+</div>
+
+                <!-- User Delete Form Container -->
+                <div class="form-container" id="deleteFormContainer">
+                    <form class="user-form" id="deleteForm">
+                        <label for="deleteUsername">Username:</label>
+                        <input type="text" id="deleteUsername" name="deleteUsername" required>
+
+                        <label for="deletePassword">Password:</label>
+                        <input type="password" id="deletePassword" name="deletePassword" required>
+
+                        <!-- Updated button with onclick attribute -->
+                        <button type="button" id="deleteUserButton" onclick="attemptDeleteUser()">Delete User</button>
+                        <button type="button" id="cancelDeleteButton" onclick="resetDeleteUserForm()">Cancel</button>
+                    </form>
+                </div>
+
+    <!-- User Modify Form Container -->
+<div class="edit-form-container" id="editFormContainerUser">
+    <form class="edit-form" id="editFormUser">
+        <label for="editOldUsername">Old Username:</label>
+        <input type="text" id="editOldUsername" name="editOldUsername" required>
+
+        <label for="editNewUsername">New Username:</label>
+        <input type="text" id="editNewUsername" name="editNewUsername" required>
+
+        <label for="editFullname">Full Name:</label>
+        <input type="text" id="editFullname" name="editFullname" required>
+
+        <label for="editPassword">Password:</label>
+        <input type="password" id="editPassword" name="editPassword" required>
+
+        <label for="editConfirmPassword">Confirm Password:</label>
+        <input type="password" id="editConfirmPassword" name="editConfirmPassword" required>
+
+        <!-- Updated button with onclick attribute -->
+        <button type="button" id="confirmEditUser" onclick="confirmEditUser()">Confirm Edit</button>
+        <button type="button" id="cancelEditButton" onclick="resetEditUserForm()">Cancel</button>
+    </form>
+</div>
+
+<div class="report-container">
+  <div class="report-header">
+    <h1 class="recent-Articles">Recent Users</h1>
+    <button class="view">View All</button>
+    <!-- <button class="view-less" style="display: none;">View Less</button> -->
+  </div>
+  <div class="report-body">
+    <!-- Both User and Group List Tables will be dynamically added here using JavaScript -->
+    <table id="userListTable" class="dynamic-table show-table">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>UID</th>
+          <th>GID</th>
+          <th>Home</th>
+          <th>Shell</th>
+          <!-- <th>Actions</th> -->
+        </tr>
+      </thead>
+      <tbody id="userList">
+        <!-- User list items will be dynamically added here using JavaScript -->
+      </tbody>
+      
+    </table>
+  </div>
+</div>
+
+                  
+                  
+            </div>
+        </div>
+    </div>
+
+    <script src="/script/main.js"></script>
+    <script>
+        // Function to show the Add User form
+        // function showAddUserForm() {
+        //     const contentWrapper = document.querySelector('.content-wrapper');
+        //     const userFormContainer = document.getElementById('userFormContainer');
+
+        //     userFormContainer.style.display = 'flex';
+        // }
+
+        // Function to show the Delete User form
+        function showDeleteUserForm() {
+            const contentWrapper = document.querySelector('.content-wrapper');
+            const deleteFormContainer = document.getElementById('deleteFormContainer');
+
+            deleteFormContainer.style.display = 'flex';
+        }
+
+        // Function to show the Add User form
+  function showAddUserForm() {
+    const userFormContainer = document.getElementById('userFormContainer');
+    userFormContainer.style.display = 'flex';
+  }
+
+  // Function to add a new user
+  function addUser() {
+        const usernameInput = document.getElementById('username');
+        const fullnameInput = document.getElementById('fullname');
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirmPassword');
+
+        const username = usernameInput.value.trim();
+        const fullname = fullnameInput.value.trim();
+        const password = passwordInput.value;
+        const confirmPassword = confirmPasswordInput.value;
+
+        if (username && fullname && password && confirmPassword && password === confirmPassword) {
+            // Send only the necessary data to the server
+            fetch('http://localhost:3002/createUser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, fullname }),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    // Display the success message
+                    alert(data.message);
+                    // Reset the form
+                    usernameInput.value = '';
+                    fullnameInput.value = '';
+                    passwordInput.value = '';
+                    confirmPasswordInput.value = '';
+                    // Hide the form container
+                    const userFormContainer = document.getElementById('userFormContainer');
+                    userFormContainer.style.display = 'none';
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        } else {
+            alert('Invalid input or passwords do not match.');
+        }
+    }
+        const initialUsers = [
+        { username: 'testuser', uid: '1001', gid: '1001', home: '/home/testuser', shell: '/bin/sh' },
+        { username: 'ayantest', uid: '1003', gid: '1003', home: '/home/ayantest', shell: '/bin/sh' },
+        { username: 'sshd', uid: '129', gid: '65534', home: '/run/sshd', shell: '/usr/sbin/nologin' },
+        // Add more initial users as needed
+        ];
+
+        // Function to display initial users
+        function displayInitialUsers(users) {
+        const userListBody = document.getElementById('userList');
+
+        // Clear existing rows
+        userListBody.innerHTML = '';
+
+        // Populate the table with initial users' data
+        users.forEach(user => {
+            const row = userListBody.insertRow();
+            row.innerHTML = `
+            <td>${user.username}</td>
+            <td>${user.uid}</td>
+            <td>${user.gid}</td>
+            <td>${user.home}</td>
+            <td>${user.shell}</td>
+            `;
+        });
+        }
+
+        // Display initial users on page load
+        displayInitialUsers(initialUsers);
+
+        // Function to fetch all users when "View All" button is clicked
+        document.querySelector('.view').addEventListener('click', function () {
+        fetch('http://localhost:3002/getUsers')  // Updated endpoint to match server-side
+            .then(response => response.json())
+            .then(data => {
+            // Display all users
+            displayInitialUsers(data);
+            })
+            .catch(error => {
+            console.error('Error:', error);
+            });
+        });
+
+  
+        function attemptDeleteUser() {
+        const username = document.getElementById('deleteUsername').value;
+        const password = document.getElementById('deletePassword').value;
+
+        // Check if the user exists in the Linux user list
+        fetch('http://localhost:3002/getUsers')
+        .then(response => response.json())
+        .then(usersList => {
+            const userExists = usersList.some(user => user.username === username);
+            if (userExists) {
+                // If the user exists, proceed with the deletion
+                deleteUser(username, password);
+            } else {
+                // If the user does not exist, show an alert
+                alert('User does not exist. Please enter a valid username.');
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching users:', error);
+            alert('Error checking user existence.');
+        });
+    }
+
+    function deleteUser(username, password) {
+        // Make a DELETE request to the server to delete the user
+        fetch('http://localhost:3002/deleteUser', {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Show an alert based on the server response
+            if (data.message) {
+                alert('User Successfully Deleted');
+                resetDeleteUserForm(); // Reset the form after successful deletion
+            } else {
+                alert('User Successfully Deleted');
+            }
+        })
+        .catch(error => {
+            console.error('Error deleting user:', error);
+            alert('Error Deleting User');
+        });
+    }
+
+    function resetDeleteUserForm() {
+        document.getElementById('deleteUsername').value = '';
+        document.getElementById('deletePassword').value = '';
+        document.getElementById('deleteFormContainer').style.display = 'none';
+    }
+
+
+    function confirmEditUser() {
+  const editOldUsernameInput = document.getElementById('editOldUsername');
+  const editNewUsernameInput = document.getElementById('editNewUsername');
+  const editFullnameInput = document.getElementById('editFullname');
+  const editPasswordInput = document.getElementById('editPassword');
+  const editConfirmPasswordInput = document.getElementById('editConfirmPassword');
+
+  const oldUsername = editOldUsernameInput.value.trim();
+  const newUsername = editNewUsernameInput.value.trim();
+  const fullname = editFullnameInput.value.trim();
+  const password = editPasswordInput.value;
+
+  if (oldUsername && newUsername && fullname) {
+    // Send the modified user details to the server
+    fetch('http://localhost:3002/editUser', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ oldUsername, newUsername, password, fullname }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        // Display the success message
+        alert(data.message);
+        // Reset the form
+        resetEditUserForm();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Error updating user.');
+      });
+  } else {
+    alert('Invalid input. Please fill in all fields.');
+  }
+}
+
+    </script>
+</body>
+</html>

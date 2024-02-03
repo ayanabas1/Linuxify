@@ -1,1 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="/styles/login.css">
+</head>
+<body>
+    <!--Admin Login-->
+<section id="loginPage">
+    <header>
+        <img class="CBE-img" src="/IMAGES/LOGO3-removebg-preview.png" alt="logo">
+    </header> 
+    <form id="loginForm" onsubmit="return login()">
+        
 
+        <h2 class="login-text stroked-text">Login</h2>
+        <h3 class="login-text2">Login in your account</h3>
+
+        <input type="text" placeholder="Username/Email" id="username" required>
+        <input type="password" placeholder="Password" id="password" required>
+        <button class="button" type="submit">Login</button>
+
+        <p class="Forgot"><a href="passwordrest.html" onclick="showForgotPassword()">Forgot Password?</a></p>
+
+    </form>
+</section>
+
+<script src="/script/login.js"></script>
+    
+</body>
+</html>
